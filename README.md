@@ -16,25 +16,25 @@ This e-commerce app can run both Android and iOS devices as it is built with Flu
 
 ## Features :label:
 
-* [Login](#login screen)
+* Login
 
-* [Register]()
+* Register
 
-* [Check out the product]()
+* Check out the product
 
-* [Search product]()
+* Search product
 
-* [Order product]()
+* Order product
 
-* [Logout]()
+* Logout
 
-* [Become a salesman]()
+* Become a salesman
 
-* [Change product information]()
+* Change product information
 
-* [Change personal information]()
+* Change personal information
 
-* [And more]()
+* And more
 
 Please give your comments about the application :heart_eyes:
 
