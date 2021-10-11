@@ -76,7 +76,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                           style: headingStyle,
                         ),
                         Text(
-                          "Đừng lo lắng,hãy cho chúng tôi biết email của bạn,chúng tôi sẽ giúp bạn phục hồi tài khoản",
+                          "Đừng lo lắng, hãy cho chúng tôi biết email của bạn, chúng tôi sẽ giúp bạn phục hồi tài khoản",
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: SizeConfig.screenHeight * 0.1),
