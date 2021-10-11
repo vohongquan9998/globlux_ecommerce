@@ -83,7 +83,8 @@ class _EditProductFormState extends State<EditProductForm> {
 
   bool newProduct = true;
   Product product;
-
+  String s = "";
+  ProductDetails _productDetails;
   @override
   void dispose() {
     titleFieldController.dispose();
@@ -164,6 +165,10 @@ class _EditProductFormState extends State<EditProductForm> {
             hintText: "Thêm thẻ tìm kiếm",
             keyboardType: TextInputType.name,
             onSubmitted: (String str) {
+              setState(() {
+                s = str;
+                _productDetails = productDetails;
+              });
               productDetails.addSearchTag(str.toLowerCase());
             },
           ),
@@ -332,6 +337,19 @@ class _EditProductFormState extends State<EditProductForm> {
         Text("Sản phẩm của bạn sẽ được tìm kiếm khi nhập Thẻ này"),
         SizedBox(height: getProportionateScreenHeight(15)),
         buildProductSearchTags(),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: kPrimaryColor,
+          ),
+          child: IconButton(
+            icon: Icon(Icons.check),
+            onPressed: () {
+              _productDetails.addSearchTag(s.toLowerCase());
+            },
+            color: Colors.white,
+          ),
+        )
       ],
     );
   }
