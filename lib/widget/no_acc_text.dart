@@ -13,12 +13,14 @@ class NoAccountText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Text(
-        //   "",
-        //   style: TextStyle(
-        //     fontSize: getProportionateScreenWidth(16),
-        //   ),
-        // ),
+        Text(
+          "Chưa có tài khoản? ",
+          style: TextStyle(
+            fontSize: getProportionateScreenWidth(16),
+            fontWeight: FontWeight.w800,
+              color: Colors.grey[700],
+          ),
+        ),
         GestureDetector(
           onTap: () {
             Navigator.push(context,
