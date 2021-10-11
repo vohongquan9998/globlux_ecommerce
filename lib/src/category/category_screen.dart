@@ -277,7 +277,7 @@ class _CategoryBodyState extends State<CategoryBody> {
         return "assets/images/fashions_banner.jpg";
       case ProductType.Groceries:
         return "assets/images/groceries_banner.jpg";
-      case ProductType.Art:
+      case ProductType.Furniture:
         return "assets/images/arts_banner.jpg";
       case ProductType.Others:
         return "assets/images/others_banner.jpg";
