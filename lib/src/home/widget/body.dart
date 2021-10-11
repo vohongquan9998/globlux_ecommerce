@@ -52,7 +52,7 @@ class _HomeBodyState extends State<HomeBody> {
     <String, dynamic>{
       ICON_KEY: "assets/icons/Art.svg",
       TITLE_KEY: "Đồ trang trí",
-      PRODUCT_TYPE_KEY: ProductType.Art,
+      PRODUCT_TYPE_KEY: ProductType.Furniture,
     },
     <String, dynamic>{
       ICON_KEY: "assets/icons/Others.svg",
