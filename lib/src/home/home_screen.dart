@@ -9,10 +9,13 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
-      body: Stack(
-        children: [
-          HomeBody(),
-        ],
+      body: GestureDetector(
+         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+         child: Stack(
+            children: [
+               HomeBody(),
+            ],
+         ),
       ),
       drawer: HomeScreenDrawer(),
     );
