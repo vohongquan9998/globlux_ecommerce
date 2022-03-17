@@ -1,28 +1,27 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_shop/services/steams/data_stream.dart';
 import 'package:flutter_online_shop/src/home/widget/section_tile.dart';
+
+import 'package:flutter_online_shop/src/home/widget/slideRatingItem.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/nothing_show.dart';
-import 'package:flutter_online_shop/widget/product_card.dart';
-import 'package:flutter_online_shop/widget/product_card_listview.dart';
 import 'package:logger/logger.dart';
 
-class ProductsSection extends StatelessWidget {
+class SlideRatingList extends StatelessWidget {
   final String sectionTitle;
   final DataStream productsStreamController;
   final String emptyListMessage;
   final Function onProductCardTapped;
-  final bool type;
 
-  const ProductsSection({
-    Key key,
-    @required this.sectionTitle,
-    @required this.productsStreamController,
-    this.emptyListMessage = "Hiện tại không có sản phẩm",
-    @required this.onProductCardTapped,
-    this.type = false,
-  }) : super(key: key);
+  const SlideRatingList(
+      {Key key,
+      this.sectionTitle,
+      this.productsStreamController,
+      this.emptyListMessage,
+      this.onProductCardTapped})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +65,7 @@ class ProductsSection extends StatelessWidget {
               ),
             );
           }
-          return !type
-              ? buildProductGrid(snapshot.data)
-              : buildProductList(snapshot.data);
+          return buildProductSlider(snapshot.data);
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
@@ -88,42 +85,28 @@ class ProductsSection extends StatelessWidget {
     );
   }
 
-  Widget buildProductGrid(List<String> productsId) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: BouncingScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.7,
-        crossAxisSpacing: 4,
-        mainAxisSpacing: 4,
-      ),
+  Widget buildProductSlider(List<String> productsId) {
+    return CarouselSlider.builder(
       itemCount: productsId.length,
-      itemBuilder: (context, index) {
-        return ProductCard(
-          productId: productsId[index],
-          press: () {
-            onProductCardTapped.call(productsId[index]);
-          },
-        );
-      },
-    );
-  }
-
-  Widget buildProductList(List<String> productsId) {
-    return Padding(
-      padding: EdgeInsets.only(right: getProportionateScreenWidth(50)),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: productsId.length,
-        itemBuilder: (context, index) {
-          return ProductCardListView(
+      itemBuilder: (BuildContext context, int index, int i) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          child: SlideRatingItem(
             productId: productsId[index],
             press: () {
               onProductCardTapped.call(productsId[index]);
             },
-          );
-        },
+          ),
+        );
+      },
+      options: CarouselOptions(
+        height: SizeConfig.screenHeight * .3,
+        autoPlay: true,
+        autoPlayInterval: Duration(seconds: 7),
+        enlargeCenterPage: true,
+        autoPlayCurve: Curves.fastOutSlowIn,
+        autoPlayAnimationDuration: Duration(milliseconds: 800),
+        enableInfiniteScroll: false,
       ),
     );
   }

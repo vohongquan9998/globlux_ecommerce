@@ -6,37 +6,47 @@ class FirebaseSignUpAuthException extends MessagedFirebaseAuthException {
       : super(message);
 }
 
+//Bắt exception [Xác nhận người dùng thất bại]
+
 class FirebaseSignUpAuthEmailAlreadyInUseException
     extends FirebaseSignUpAuthException {
   FirebaseSignUpAuthEmailAlreadyInUseException(
-      {String message = "Email already in use"})
+      {String message = "Email đã tồn tại"})
       : super(message: message);
 }
+
+//Bắt exception [Email không hợp lệ]
 
 class FirebaseSignUpAuthInvalidEmailException
     extends FirebaseSignUpAuthException {
   FirebaseSignUpAuthInvalidEmailException(
-      {String message = "Email is not valid"})
+      {String message = "Email không hợp lệ"})
       : super(message: message);
 }
+
+//Bắt exception [Đăng kí bị hạn chế]
 
 class FirebaseSignUpAuthOperationNotAllowedException
     extends FirebaseSignUpAuthException {
   FirebaseSignUpAuthOperationNotAllowedException(
-      {String message = "Sign up is restricted for this user"})
+      {String message = "Đăng ký bị hạn chế đối với người dùng này"})
       : super(message: message);
 }
+
+//Bắt exception [Mật khẩu yếu]
 
 class FirebaseSignUpAuthWeakPasswordException
     extends FirebaseSignUpAuthException {
   FirebaseSignUpAuthWeakPasswordException(
-      {String message = "Weak password, try something better"})
+      {String message = "Mật khẩu yếu, hãy thử mật khẩu tốt hơn"})
       : super(message: message);
 }
+
+//Bắt exception [Đăng kí tài khoản thất bại]
 
 class FirebaseSignUpAuthUnknownReasonFailureException
     extends FirebaseSignUpAuthException {
   FirebaseSignUpAuthUnknownReasonFailureException(
-      {String message = "Can't register due to unknown reason"})
+      {String message = "Đăng kí tài khoản thất bại"})
       : super(message: message);
 }

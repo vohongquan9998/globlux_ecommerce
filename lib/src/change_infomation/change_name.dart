@@ -5,7 +5,6 @@ import 'package:flutter_online_shop/src/home/widget/title_container.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/change_infor_button.dart';
-import 'package:flutter_online_shop/widget/default_button.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 
 class ChangeDisplayNameScreen extends StatelessWidget {

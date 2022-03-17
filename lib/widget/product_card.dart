@@ -65,9 +65,12 @@ class ProductCard extends StatelessWidget {
           flex: 2,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.network(
-              product.images[0],
-              fit: BoxFit.contain,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(
+                product.images[0],
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),

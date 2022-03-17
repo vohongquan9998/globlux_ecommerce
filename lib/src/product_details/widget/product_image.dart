@@ -48,9 +48,12 @@ class ProductImages extends StatelessWidget {
                     child: SizedBox(
                       height: SizeConfig.screenHeight * 0.35,
                       width: SizeConfig.screenWidth * 0.75,
-                      child: Image.network(
-                        product.images[productImagesSwiper.currentImageIndex],
-                        fit: BoxFit.contain,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          product.images[productImagesSwiper.currentImageIndex],
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ),

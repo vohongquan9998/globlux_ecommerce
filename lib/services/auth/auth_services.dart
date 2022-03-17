@@ -8,6 +8,7 @@ import 'package:flutter_online_shop/exceptions/auth/sign_up_exception.dart';
 import 'package:flutter_online_shop/services/db/user_db_helper.dart';
 
 class AuthentificationService {
+  //Khai báo các biến exception
   static const String USER_NOT_FOUND_EXCEPTION_CODE = "user-not-found";
   static const String WRONG_PASSWORD_EXCEPTION_CODE = "wrong-password";
   static const String EMAIL_ALREADY_IN_USE_EXCEPTION_CODE =
@@ -71,6 +72,7 @@ class AuthentificationService {
     return true;
   }
 
+  //Hàm đăng nhập dùng Email
   Future<bool> signIn({String email, String password}) async {
     try {
       final UserCredential userCredential = await firebaseAuth
@@ -105,6 +107,7 @@ class AuthentificationService {
     }
   }
 
+  //Hàm đăng kí
   Future<bool> signUp({String email, String password}) async {
     try {
       final UserCredential userCredential = await firebaseAuth
@@ -135,19 +138,23 @@ class AuthentificationService {
     }
   }
 
+  //Đăng xuất
   Future<void> signOut() async {
     await firebaseAuth.signOut();
   }
 
+  //Kiểm tra nguòi dùng đã xác minh
   bool get currentUserVerified {
     currentUser.reload();
     return currentUser.emailVerified;
   }
 
+  //Gửi mã xác minh
   Future<void> sendVerificationEmailToCurrentUser() async {
     await firebaseAuth.currentUser.sendEmailVerification();
   }
 
+  //Lấy information của User hiện tại
   User get currentUser {
     return firebaseAuth.currentUser;
   }
@@ -156,6 +163,7 @@ class AuthentificationService {
     await currentUser.updateProfile(displayName: updatedDisplayName);
   }
 
+  //Reset mật khẩu
   Future<bool> resetPasswordForEmail(String email) async {
     try {
       await firebaseAuth.sendPasswordResetEmail(email: email);
@@ -173,6 +181,7 @@ class AuthentificationService {
     }
   }
 
+  //Đổi password
   Future<bool> changePasswordForCurrentUser(
       {String oldPassword, @required String newPassword}) async {
     try {
@@ -204,6 +213,7 @@ class AuthentificationService {
     }
   }
 
+  //Đổi email
   Future<bool> changeEmailForCurrentUser(
       {String password, String newEmail}) async {
     try {
@@ -227,6 +237,7 @@ class AuthentificationService {
     }
   }
 
+  //Kiểm tra mật khẩu đã được xác minh
   Future<bool> verifyCurrentUserPassword(String password) async {
     try {
       final AuthCredential authCredential = EmailAuthProvider.credential(

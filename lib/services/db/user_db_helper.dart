@@ -29,6 +29,7 @@ class UserDatabaseHelper {
     return _firebaseFirestore;
   }
 
+  //Tạo người dùng mới
   Future<void> createNewUser(String uid) async {
     await firestore.collection(USERS_COLLECTION_NAME).doc(uid).set({
       DP_KEY: null,
@@ -37,6 +38,7 @@ class UserDatabaseHelper {
     });
   }
 
+  //Xoá dữ liệu người dùng
   Future<void> deleteCurrentUserData() async {
     final uid = AuthentificationService().currentUser.uid;
     final docRef = firestore.collection(USERS_COLLECTION_NAME).doc(uid);
@@ -61,6 +63,7 @@ class UserDatabaseHelper {
     await docRef.delete();
   }
 
+  //Sản phẩm yêu thích
   Future<bool> isProductFavourite(String productId) async {
     String uid = AuthentificationService().currentUser.uid;
     final userDocSnapshot =
@@ -74,6 +77,7 @@ class UserDatabaseHelper {
     }
   }
 
+  //lấy sản phẩm yêu thích đưa vào list
   Future<List> get usersFavouriteProductsList async {
     String uid = AuthentificationService().currentUser.uid;
     final userDocSnapshot =
@@ -101,6 +105,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Lấy list địa chỉ giao hàng
   Future<List<String>> get addressesList async {
     String uid = AuthentificationService().currentUser.uid;
     final snapshot = await firestore
@@ -116,6 +121,7 @@ class UserDatabaseHelper {
     return addresses;
   }
 
+  //Lấy Id địa chỉ giao hàng
   Future<Address> getAddressFromId(String id) async {
     String uid = AuthentificationService().currentUser.uid;
     final doc = await firestore
@@ -128,6 +134,7 @@ class UserDatabaseHelper {
     return address;
   }
 
+  //THêm địa chỉ giao hàng
   Future<bool> addAddressForCurrentUser(Address address) async {
     String uid = AuthentificationService().currentUser.uid;
     final addressesCollectionReference = firestore
@@ -138,6 +145,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Xoá địa chỉ giao hàng
   Future<bool> deleteAddressForCurrentUser(String id) async {
     String uid = AuthentificationService().currentUser.uid;
     final addressDocReference = firestore
@@ -149,6 +157,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Sửa địa chỉ giao hàng
   Future<bool> updateAddressForCurrentUser(Address address) async {
     String uid = AuthentificationService().currentUser.uid;
     final addressDocReference = firestore
@@ -160,6 +169,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Lấy dữ liệu giỏ hàng bằng ID
   Future<CartItem> getCartItemFromId(String id) async {
     String uid = AuthentificationService().currentUser.uid;
     final cartCollectionRef = firestore
@@ -172,6 +182,7 @@ class UserDatabaseHelper {
     return cartItem;
   }
 
+  //Thêm vào giỏ hàng
   Future<bool> addProductToCart(String productId) async {
     String uid = AuthentificationService().currentUser.uid;
     final cartCollectionRef = firestore
@@ -189,6 +200,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Giỏ hàng rỗng
   Future<List<String>> emptyCart() async {
     String uid = AuthentificationService().currentUser.uid;
     final cartItems = await firestore
@@ -204,6 +216,7 @@ class UserDatabaseHelper {
     return orderedProductsUid;
   }
 
+  //Tổng hàng trong giỏ hàng
   Future<num> get cartTotal async {
     String uid = AuthentificationService().currentUser.uid;
     final cartItems = await firestore
@@ -220,6 +233,7 @@ class UserDatabaseHelper {
     return total;
   }
 
+  //Xoá khỏi giỏ hàng
   Future<bool> removeProductFromCart(String cartItemID) async {
     String uid = AuthentificationService().currentUser.uid;
     final cartCollectionReference = firestore
@@ -230,6 +244,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Tăng số lượng từng món hàng
   Future<bool> increaseCartItemCount(String cartItemID) async {
     String uid = AuthentificationService().currentUser.uid;
     final cartCollectionRef = firestore
@@ -241,6 +256,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Giảm số lượng từng món hàng
   Future<bool> decreaseCartItemCount(String cartItemID) async {
     String uid = AuthentificationService().currentUser.uid;
     final cartCollectionRef = firestore
@@ -258,6 +274,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Lấy list giỏ hàng
   Future<List<String>> get allCartItemsList async {
     String uid = AuthentificationService().currentUser.uid;
     final querySnapshot = await firestore
@@ -272,6 +289,7 @@ class UserDatabaseHelper {
     return itemsId;
   }
 
+  //Lấy list sản phẩm đã đặt hàng
   Future<List<String>> get orderedProductsList async {
     String uid = AuthentificationService().currentUser.uid;
     final orderedProductsSnapshot = await firestore
@@ -286,6 +304,7 @@ class UserDatabaseHelper {
     return orderedProductsId;
   }
 
+  //Thêm vào đơn đặt hàng
   Future<bool> addToMyOrders(List<OrderedProduct> orders) async {
     String uid = AuthentificationService().currentUser.uid;
     final orderedProductsCollectionRef = firestore
@@ -298,6 +317,7 @@ class UserDatabaseHelper {
     return true;
   }
 
+  //Lấy dữ liệu đơn đặt hàng bằng id
   Future<OrderedProduct> getOrderedProductFromId(String id) async {
     String uid = AuthentificationService().currentUser.uid;
     final doc = await firestore
