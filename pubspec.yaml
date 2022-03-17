@@ -44,6 +44,8 @@ dependencies:
   swipedetector: 
   url_launcher: ^6.0.9
   blobs: ^2.0.0
+  carousel_slider: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
