@@ -1,5 +1,7 @@
 # GLOBLUX
 
+Document: [Open Document](https://github.com/vohongquan9998/globlux_ecommerce/blob/v1.1/DoAnChuyenNganh_Nhom3.pdf)
+
 ## E-commerce App :shopping:
 
 This e-commerce app can run both Android and iOS devices as it is built with Flutter. We have login screen, registration screen, product interface, search, order, add products for business and many other functions like an e-commerce application. 
