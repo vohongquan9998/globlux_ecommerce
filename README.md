@@ -40,29 +40,29 @@ This e-commerce app can run both Android and iOS devices as it is built with Flu
 
 Please give your comments about the application :heart_eyes:
 
-## LOGIN SCREEN :door:
+## LOGIN SCREEN :door: - REGISTER SCREEN :key:
 
-![login](https://user-images.githubusercontent.com/71002261/129535528-0bd23b8f-3b12-47bb-bdc9-8d3aaf3b400e.png)
-
-## REGISTER SCREEN :key:
-
-![register](https://user-images.githubusercontent.com/71002261/129535771-0cc346f3-b0db-4d7f-bb73-9c252f133586.png)
+![login](https://user-images.githubusercontent.com/71002261/162601956-f4773ef5-c6cd-46e0-afe7-cb9e26f20f7d.png)![register](https://user-images.githubusercontent.com/71002261/162601966-6a025c48-8419-496e-a7ce-70a4922c1fea.png)
 
 ## HOME SCREEN :house:
 
-![home](https://user-images.githubusercontent.com/71002261/129536497-943cc092-a3de-4498-9a9c-77601f278f60.png)
+![main](https://user-images.githubusercontent.com/71002261/162601970-085ea54c-c7a3-4bf6-a4ea-f08d5d2814e2.png)
+
 
 ## MAIN MENU :bookmark_tabs:
 
-![menu](https://user-images.githubusercontent.com/71002261/129536640-4cb88846-a19a-4b5e-8aff-466ca127cc38.png)
+![menu](https://user-images.githubusercontent.com/71002261/162601971-810ffbd7-a538-4d3c-aa96-92ea859936ed.png)
+
 
 ## CHECK OUT DETAILS OF PRODUCT :shopping_cart:
  
-![detail](https://user-images.githubusercontent.com/71002261/129536391-1b0134b7-ae80-4d31-b84e-6425922bf392.png)
+![detail](https://user-images.githubusercontent.com/71002261/162601973-12b8a3c1-1a61-4c88-83c5-ae57bc01732b.png)
+
 
 ## AND MORE :clipboard:
 
-![morebanner](https://user-images.githubusercontent.com/71002261/129536658-da762a33-e481-4eef-a736-b418a8677074.png)
+![andmore](https://user-images.githubusercontent.com/71002261/162602180-55ed929f-f5f8-4f3b-9b56-f1a4df080d9d.png)
+
 
 
 ## Run the app :running_man:
