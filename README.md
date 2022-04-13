@@ -61,7 +61,7 @@ Please give your comments about the application :heart_eyes:
 
 ## AND MORE :clipboard:
 
-![andmore](https://user-images.githubusercontent.com/71002261/162602180-55ed929f-f5f8-4f3b-9b56-f1a4df080d9d.png)
+![andmore](https://user-images.githubusercontent.com/71002261/163178111-32c49a2f-36bf-4c1f-8475-0a585f774151.png)
 
 
 
