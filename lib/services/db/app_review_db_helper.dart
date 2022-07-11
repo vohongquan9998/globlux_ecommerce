@@ -19,6 +19,7 @@ class AppReviewDatabaseHelper {
     return _firebaseFirestore;
   }
 
+  //Hàm edit đánh giá
   Future<bool> editAppReview(AppReview appReview) async {
     final uid = AuthentificationService().currentUser.uid;
     final docRef = firestore.collection(APP_REVIEW_COLLECTION_NAME).doc(uid);
@@ -31,6 +32,7 @@ class AppReviewDatabaseHelper {
     return true;
   }
 
+  //Hàm lấy giá trị đánh giá của user hiện tại
   Future<AppReview> getAppReviewOfCurrentUser() async {
     final uid = AuthentificationService().currentUser.uid;
     final docRef = firestore.collection(APP_REVIEW_COLLECTION_NAME).doc(uid);

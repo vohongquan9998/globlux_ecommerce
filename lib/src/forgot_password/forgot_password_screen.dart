@@ -6,7 +6,6 @@ import 'package:flutter_online_shop/src/sign_in/sign_in_screen.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/circleContainer.dart';
-import 'package:flutter_online_shop/widget/custom_stuffix_icon.dart';
 import 'package:flutter_online_shop/widget/default_button.dart';
 import 'package:flutter_online_shop/widget/no_acc_text.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
@@ -76,7 +75,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                           style: headingStyle,
                         ),
                         Text(
-                          "Đừng lo lắng, hãy cho chúng tôi biết email của bạn, chúng tôi sẽ giúp bạn phục hồi tài khoản",
+                          "Đừng lo lắng,hãy cho chúng tôi biết email của bạn,chúng tôi sẽ giúp bạn phục hồi tài khoản",
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(height: SizeConfig.screenHeight * 0.1),
@@ -139,10 +138,6 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          'Tôi vừa nhớ ra mật khẩu \t -',
-          style: TextStyle(fontSize: getProportionateScreenWidth(15)),
-        ),
         SizedBox(width: SizeConfig.screenWidth * 0.03),
         GestureDetector(
           onTap: () => Navigator.push(
@@ -151,10 +146,11 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 builder: (context) => SignInScreen(),
               )),
           child: Text(
-            'Đăng nhập',
+            'Trở về',
             style: TextStyle(
                 color: kPrimaryColor,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Roboto',
                 fontSize: getProportionateScreenWidth(15)),
           ),
         ),

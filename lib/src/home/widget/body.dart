@@ -6,10 +6,10 @@ import 'package:flutter_online_shop/services/steams/all_product_stream.dart';
 import 'package:flutter_online_shop/services/steams/favourite_product_stream.dart';
 import 'package:flutter_online_shop/src/cart/cart_screen.dart';
 import 'package:flutter_online_shop/src/category/category_screen.dart';
-import 'package:flutter_online_shop/src/home/widget/drawer.dart';
 import 'package:flutter_online_shop/src/home/widget/header.dart';
 import 'package:flutter_online_shop/src/home/widget/product_type_box.dart';
 import 'package:flutter_online_shop/src/home/widget/products_sections.dart';
+import 'package:flutter_online_shop/src/home/widget/slideRatingList.dart';
 import 'package:flutter_online_shop/src/product_details/product_details_screen.dart';
 import 'package:flutter_online_shop/src/search/search_screen.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
@@ -61,21 +61,26 @@ class _HomeBodyState extends State<HomeBody> {
     },
   ];
 
+  bool isType = false;
+
   final FavouriteProductsStream favouriteProductsStream =
       FavouriteProductsStream();
   final AllProductsStream allProductsStream = AllProductsStream();
+  final AllProductsStream allRatingProductsStream = AllProductsStream();
 
   @override
   void initState() {
     super.initState();
-    favouriteProductsStream.init();
+    //favouriteProductsStream.init();
     allProductsStream.init();
+    allRatingProductsStream.init();
   }
 
   @override
   void dispose() {
-    favouriteProductsStream.dispose();
+    //favouriteProductsStream.dispose();
     allProductsStream.dispose();
+    allRatingProductsStream.init();
     super.dispose();
   }
 
@@ -162,7 +167,23 @@ class _HomeBodyState extends State<HomeBody> {
                         await refreshPage();
                       },
                     ),
-                    SizedBox(height: getProportionateScreenHeight(15)),
+                    SizedBox(height: getProportionateScreenHeight(10)),
+                    Padding(
+                      padding: EdgeInsets.only(left: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Danh mục",
+                            style: TextStyle(
+                                fontSize: getProportionateScreenHeight(20),
+                                color: kPrimaryColor,
+                                fontFamily: 'Roboto'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: getProportionateScreenHeight(10)),
                     SizedBox(
                       height: SizeConfig.screenHeight * 0.1,
                       child: Padding(
@@ -196,20 +217,57 @@ class _HomeBodyState extends State<HomeBody> {
                         ),
                       ),
                     ),
-                    SizedBox(height: getProportionateScreenHeight(20)),
-                    // SizedBox(
-                    //   height: SizeConfig.screenHeight * 0.5,
-                    //   child: ProductsSection(
-                    //     sectionTitle: "Products You Like",
-                    //     productsStreamController: favouriteProductsStream,
-                    //     emptyListMessage: "Add Product to Favourites",
-                    //     onProductCardTapped: onProductCardTapped,
-                    //   ),
-                    // ),
-                    SizedBox(height: getProportionateScreenHeight(20)),
+                    SizedBox(height: getProportionateScreenHeight(10)),
+                    SizedBox(
+                      height: SizeConfig.screenHeight * 0.4,
+                      child: SlideRatingList(
+                        sectionTitle: "Đánh giá về sản phẩm",
+                        productsStreamController: allRatingProductsStream,
+                        emptyListMessage: "Hiện không có sản phẩm nào",
+                        onProductCardTapped: onProductCardTapped,
+                      ),
+                    ),
+                    SizedBox(height: getProportionateScreenHeight(5)),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(
+                              top: getProportionateScreenHeight(5)),
+                          width: SizeConfig.screenWidth * .3,
+                          height: SizeConfig.screenHeight * .05,
+                          decoration: BoxDecoration(
+                              color: kPrimaryColor.withOpacity(.2),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20),
+                              )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(
+                                  icon: Icon(Icons.grid_view),
+                                  onPressed: () {
+                                    setState(() {
+                                      isType = false;
+                                    });
+                                  }),
+                              IconButton(
+                                  icon: Icon(Icons.list),
+                                  onPressed: () {
+                                    setState(() {
+                                      isType = true;
+                                    });
+                                  }),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: SizeConfig.screenHeight * 0.8,
                       child: ProductsSection(
+                        type: isType,
                         sectionTitle: "Tất cả sản phẩm",
                         productsStreamController: allProductsStream,
                         emptyListMessage: "Hiện tại chưa có sản phẩm nào cả",

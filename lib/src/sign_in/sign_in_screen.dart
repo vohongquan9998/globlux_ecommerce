@@ -1,4 +1,3 @@
-import 'package:blobs/blobs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_shop/exceptions/auth/firebase_exception.dart';
 import 'package:flutter_online_shop/exceptions/auth/sign_in_exception.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_online_shop/src/forgot_password/forgot_password_screen.d
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/circleContainer.dart';
-import 'package:flutter_online_shop/widget/custom_stuffix_icon.dart';
 import 'package:flutter_online_shop/widget/default_button.dart';
 import 'package:flutter_online_shop/widget/no_acc_text.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
@@ -19,7 +17,6 @@ class SignInScreen extends StatelessWidget {
     SizeConfig().init(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // appBar: AppBar(),
       body: SafeArea(
         child: Container(
           width: double.infinity,

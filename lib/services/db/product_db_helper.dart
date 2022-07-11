@@ -6,7 +6,7 @@ import 'package:flutter_online_shop/services/auth/auth_services.dart';
 
 class ProductDatabaseHelper {
   static const String PRODUCTS_COLLECTION_NAME = "products";
-  static const String REVIEWS_COLLECTOIN_NAME = "reviews";
+  static const String REVIEWS_COLLECTION_NAME = "reviews";
 
   ProductDatabaseHelper._privateConstructor();
   static ProductDatabaseHelper _instance =
@@ -22,6 +22,7 @@ class ProductDatabaseHelper {
     return _firebaseFirestore;
   }
 
+  //tìm sản phẩm
   Future<List<String>> searchInProducts(String query,
       {ProductType productType}) async {
     Query queryRef;
@@ -56,11 +57,12 @@ class ProductDatabaseHelper {
     return productsId.toList();
   }
 
+  //Thêm đánh giá về sản phẩm (Văn bản)
   Future<bool> addProductReview(String productId, Review review) async {
     final reviewesCollectionRef = firestore
         .collection(PRODUCTS_COLLECTION_NAME)
         .doc(productId)
-        .collection(REVIEWS_COLLECTOIN_NAME);
+        .collection(REVIEWS_COLLECTION_NAME);
     final reviewDoc = reviewesCollectionRef.doc(review.reviewerUid);
     if ((await reviewDoc.get()).exists == false) {
       reviewDoc.set(review.toMap());
@@ -77,12 +79,13 @@ class ProductDatabaseHelper {
     }
   }
 
+  //Thêm đánh giá về sản phẩm(Số sao)
   Future<bool> addUsersRatingForProduct(String productId, int rating,
       {int oldRating}) async {
     final productDocRef =
         firestore.collection(PRODUCTS_COLLECTION_NAME).doc(productId);
     final ratingsCount =
-        (await productDocRef.collection(REVIEWS_COLLECTOIN_NAME).get())
+        (await productDocRef.collection(REVIEWS_COLLECTION_NAME).get())
             .docs
             .length;
     final productDoc = await productDocRef.get();
@@ -99,12 +102,13 @@ class ProductDatabaseHelper {
     return true;
   }
 
+  //Lấy ID đánh giá của sản phẩm
   Future<Review> getProductReviewWithID(
       String productId, String reviewId) async {
     final reviewesCollectionRef = firestore
         .collection(PRODUCTS_COLLECTION_NAME)
         .doc(productId)
-        .collection(REVIEWS_COLLECTOIN_NAME);
+        .collection(REVIEWS_COLLECTION_NAME);
     final reviewDoc = await reviewesCollectionRef.doc(reviewId).get();
     if (reviewDoc.exists) {
       return Review.fromMap(reviewDoc.data(), id: reviewDoc.id);
@@ -112,12 +116,13 @@ class ProductDatabaseHelper {
     return null;
   }
 
+  //Lấy tất cả giá trị đánh giá
   Stream<List<Review>> getAllReviewsStreamForProductId(
       String productId) async* {
     final reviewesQuerySnapshot = firestore
         .collection(PRODUCTS_COLLECTION_NAME)
         .doc(productId)
-        .collection(REVIEWS_COLLECTOIN_NAME)
+        .collection(REVIEWS_COLLECTION_NAME)
         .get()
         .asStream();
     await for (final querySnapshot in reviewesQuerySnapshot) {
@@ -130,6 +135,7 @@ class ProductDatabaseHelper {
     }
   }
 
+  //Lấy thôgn tin sản phẩm dựa vào ID
   Future<Product> getProductWithID(String productId) async {
     final docSnapshot = await firestore
         .collection(PRODUCTS_COLLECTION_NAME)
@@ -142,6 +148,7 @@ class ProductDatabaseHelper {
     return null;
   }
 
+  //Lấy thông tin sản phẩm
   Future<String> addUsersProduct(Product product) async {
     String uid = AuthentificationService().currentUser.uid;
     final productMap = product.toMap();
@@ -156,6 +163,7 @@ class ProductDatabaseHelper {
     return docRef.id;
   }
 
+  //Xoá sản phẩm
   Future<bool> deleteUserProduct(String productId) async {
     final productsCollectionReference =
         firestore.collection(PRODUCTS_COLLECTION_NAME);
@@ -163,6 +171,7 @@ class ProductDatabaseHelper {
     return true;
   }
 
+  //Sửa sản phẩm
   Future<String> updateUsersProduct(Product product) async {
     final productMap = product.toUpdateMap();
     final productsCollectionReference =
@@ -178,6 +187,7 @@ class ProductDatabaseHelper {
     return docRef.id;
   }
 
+  //Lấy dữ liệu danh mục sản phẩm
   Future<List<String>> getCategoryProductsList(ProductType productType) async {
     final productsCollectionReference =
         firestore.collection(PRODUCTS_COLLECTION_NAME);
@@ -217,6 +227,7 @@ class ProductDatabaseHelper {
     return productsId;
   }
 
+  //Sửa hình ảnh sản phẩm
   Future<bool> updateProductsImages(
       String productId, List<String> imgUrl) async {
     final Product updateProduct = Product(null, images: imgUrl);
@@ -226,6 +237,7 @@ class ProductDatabaseHelper {
     return true;
   }
 
+  //Lấy đường dẫn hình ảnh
   String getPathForProductImage(String id, int index) {
     String path = "products/images/$id";
     return path + "_$index";

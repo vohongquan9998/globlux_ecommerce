@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_online_shop/services/auth/auth_services.dart';
-import 'package:flutter_online_shop/services/db/user_db_helper.dart';
 import 'package:flutter_online_shop/src/about/about_screen.dart';
 import 'package:flutter_online_shop/src/change_infomation/change_email.dart';
 import 'package:flutter_online_shop/src/change_infomation/change_name.dart';
 import 'package:flutter_online_shop/src/change_infomation/change_password.dart';
-import 'package:flutter_online_shop/src/change_infomation/change_phone.dart';
-import 'package:flutter_online_shop/src/change_infomation/change_picture.dart';
 import 'package:flutter_online_shop/src/edit_product/edit_product_screen.dart';
 import 'package:flutter_online_shop/src/manager_address/manager_address_screen.dart';
 import 'package:flutter_online_shop/src/orders/my_orders_screen.dart';
@@ -16,7 +13,6 @@ import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/utils/utils.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
-import 'package:logger/logger.dart';
 
 class HomeScreenDrawer extends StatelessWidget {
   const HomeScreenDrawer({

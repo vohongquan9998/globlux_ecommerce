@@ -73,6 +73,3 @@ OutlineInputBorder outlineInputBorder() {
     borderSide: BorderSide(color: kTextColor),
   );
 }
-
-final kEmail = 'vohongquan9998@gmail.com';
-final kGithubLink = 'https://github.com/vohongquan9998';

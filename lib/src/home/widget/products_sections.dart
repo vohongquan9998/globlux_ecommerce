@@ -5,6 +5,7 @@ import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/nothing_show.dart';
 import 'package:flutter_online_shop/widget/product_card.dart';
+import 'package:flutter_online_shop/widget/product_card_listview.dart';
 import 'package:logger/logger.dart';
 
 class ProductsSection extends StatelessWidget {
@@ -12,12 +13,15 @@ class ProductsSection extends StatelessWidget {
   final DataStream productsStreamController;
   final String emptyListMessage;
   final Function onProductCardTapped;
+  final bool type;
+
   const ProductsSection({
     Key key,
     @required this.sectionTitle,
     @required this.productsStreamController,
     this.emptyListMessage = "Hiện tại không có sản phẩm",
     @required this.onProductCardTapped,
+    this.type = false,
   }) : super(key: key);
 
   @override
@@ -29,7 +33,11 @@ class ProductsSection extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: kPrimaryColor.withOpacity(.2),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          bottomLeft: Radius.circular(15),
+          bottomRight: Radius.circular(15),
+        ),
       ),
       child: Column(
         children: [
@@ -58,7 +66,9 @@ class ProductsSection extends StatelessWidget {
               ),
             );
           }
-          return buildProductGrid(snapshot.data);
+          return !type
+              ? buildProductGrid(snapshot.data)
+              : buildProductList(snapshot.data);
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
@@ -97,6 +107,24 @@ class ProductsSection extends StatelessWidget {
           },
         );
       },
+    );
+  }
+
+  Widget buildProductList(List<String> productsId) {
+    return Padding(
+      padding: EdgeInsets.only(right: getProportionateScreenWidth(50)),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: productsId.length,
+        itemBuilder: (context, index) {
+          return ProductCardListView(
+            productId: productsId[index],
+            press: () {
+              onProductCardTapped.call(productsId[index]);
+            },
+          );
+        },
+      ),
     );
   }
 }

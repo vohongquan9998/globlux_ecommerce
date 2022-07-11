@@ -6,12 +6,13 @@ import 'package:flutter_online_shop/src/sign_in/sign_in_screen.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/circleContainer.dart';
-import 'package:flutter_online_shop/widget/custom_stuffix_icon.dart';
 import 'package:flutter_online_shop/widget/default_button.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:logger/logger.dart';
 
 class SignUpScreen extends StatelessWidget {
+  String dk =
+      "Việc vi phạm chính sách này có thể dẫn tới một số hành động, bao gồm bất kỳ hoặc tất cả các hành động sau:\n-Xóa danh mục sản phẩm;\n-Giới hạn quyền sử dụng Tài Khoản;\n-Đình chỉ và chấm dứt Tài Khoản;\n-Thu hồi tiền/tài sản có được do hành vi gian lận, và các chi phí có liên quan như chi phí vận chuyển của đơn hàng, phí thanh toán…;\n-Cáo buộc hình sự;\n-Áp dụng biện pháp dân sự, bao gồm khiếu nại bồi thường thiệt hại và/hoặc áp dụng biện pháp khẩn cấp tạm thời;\n-Các hành động hoặc biện pháp chế tài khác theo Tiêu Chuẩn Cộng Đồng, Quy Chế Hoạt Động, hoặc các Chính Sách Globlux.\nNếu bạn phát hiện Người Sử Dụng trên Trang Globlux của chúng tôi có hành vi vi phạm Điều Khoản Dịch Vụ, vui lòng liên hệ chúng tôi.";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,16 +83,49 @@ class SignUpScreen extends StatelessWidget {
                         "Việc xác nhận đăng kí tài khoản đồng nghĩa việc bạn\n chấp nhận các điều khoản của chúng tôi",
                         textAlign: TextAlign.center,
                       ),
+                      SizedBox(height: getProportionateScreenHeight(5)),
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  actions: [
+                                    FlatButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('Tôi Đã Hiểu'))
+                                  ],
+                                  scrollable: true,
+                                  title: Text(
+                                    "Điều khoản phần mềm Globlux",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  content: SingleChildScrollView(
+                                    child: Container(
+                                      width: SizeConfig.screenWidth,
+                                      child: Text(dk),
+                                    ),
+                                  ),
+                                );
+                              });
+                        },
+                        child: Text(
+                          "Xem thêm về điều khoản >>",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Roboto',
+                          ),
+                        ),
+                      ),
                       SizedBox(height: getProportionateScreenHeight(20)),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
-                            'Đã có tài khoản \t-',
-                            style: TextStyle(
-                                fontSize: getProportionateScreenWidth(15)),
-                          ),
                           SizedBox(width: SizeConfig.screenWidth * 0.03),
                           GestureDetector(
                             onTap: () => Navigator.push(
@@ -104,6 +138,7 @@ class SignUpScreen extends StatelessWidget {
                               style: TextStyle(
                                   color: kPrimaryColor,
                                   fontWeight: FontWeight.bold,
+                                  fontFamily: 'Roboto',
                                   fontSize: getProportionateScreenWidth(20)),
                             ),
                           ),
@@ -170,6 +205,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
+//Edit Text ConfirmPassword
   Widget buildConfirmPasswordFormField() {
     return TextFormField(
       controller: confirmPasswordFieldController,
@@ -217,6 +253,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
+//EditText Email
   Widget buildEmailFormField() {
     return TextFormField(
       controller: emailFieldController,
@@ -261,6 +298,7 @@ class _SignUpFormState extends State<SignUpForm> {
     );
   }
 
+//EditText Password
   Widget buildPasswordFormField() {
     return TextFormField(
       controller: passwordFieldController,

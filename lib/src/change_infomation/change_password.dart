@@ -6,8 +6,6 @@ import 'package:flutter_online_shop/src/home/widget/title_container.dart';
 import 'package:flutter_online_shop/utils/constant.dart';
 import 'package:flutter_online_shop/utils/size_config.dart';
 import 'package:flutter_online_shop/widget/change_infor_button.dart';
-import 'package:flutter_online_shop/widget/custom_stuffix_icon.dart';
-import 'package:flutter_online_shop/widget/default_button.dart';
 import 'package:future_progress_dialog/future_progress_dialog.dart';
 import 'package:logger/logger.dart';
 
@@ -153,21 +151,6 @@ class _ChangePasswordFormState extends State<ChangePasswordForm> {
         hintText: "Xác nhận mật khẩu",
         labelText: "Xác nhận mật khẩu",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        // suffixIcon: isVisible
-        //     ? GestureDetector(
-        //         onTap: () {
-        //           setState(() {
-        //             isVisible = !isVisible;
-        //           });
-        //         },
-        //         child: Icon(Icons.visibility))
-        //     : GestureDetector(
-        //         onTap: () {
-        //           setState(() {
-        //             isVisible = !isVisible;
-        //           });
-        //         },
-        //         child: Icon(Icons.visibility_off)),
       ),
       validator: (value) {
         if (confirmNewPasswordController.text != newPasswordController.text) {
